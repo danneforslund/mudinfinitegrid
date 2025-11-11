@@ -58,6 +58,7 @@ public class MudInfiniteGrid<[DynamicallyAccessedMembers(DynamicallyAccessedMemb
         loading = true;
         var data = await originalServerData!(fakeState);
         loading = false;
+        
         if (!data.Items.Any()) {
             endReached = true;
         } else {
