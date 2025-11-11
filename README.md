@@ -5,6 +5,7 @@ Small repo that extends [MudDataGrid](https://mudblazor.com/components/datagrid#
 ## Installation
 
 Include ```mudinfinitegrid.js``` in your project.
+
 Change 
 ```razor
 <MudDataGrid ... />
