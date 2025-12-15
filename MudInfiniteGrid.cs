@@ -42,12 +42,16 @@ public class MudInfiniteGrid<[DynamicallyAccessedMembers(DynamicallyAccessedMemb
         }
     }
 
+    private void ResetGrid() {
+        _loadedItems.Clear();
+        currentPage = 0;
+        endReached = false;
+    }    
+    
     private async Task<GridData<T>> HandleInfiniteLoad(GridState<T> state) {
         if (lastLoadedPage == currentPage) {
             //Reload triggered outside of scroll event (i.e. filter/sort). Clear _loadedItems to not show old data;
-            _loadedItems.Clear();
-            currentPage = 0;
-            endReached = false;
+            ResetGrid();
         }
 
         var fakeState = new GridState<T> {
@@ -62,10 +66,10 @@ public class MudInfiniteGrid<[DynamicallyAccessedMembers(DynamicallyAccessedMemb
         if (!data.Items.Any()) {
             endReached = true;
         } else {
-            _loadedItems.AddRange(data.Items);
-            lastLoadedPage = currentPage;
+            _loadedItems.AddRange(data.Items);            
         }
 
+        lastLoadedPage = currentPage;
         return new() {
             Items = _loadedItems,
             TotalItems = _loadedItems.Count
